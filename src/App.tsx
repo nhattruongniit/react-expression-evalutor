@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+// mui core
+import { Typography } from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+
+// context
+import { useAppContext } from "./context/AppContext";
+
+// components
+import Screen1 from "./views/Screen1";
+import Screen2 from "./views/Screen2";
 
 function App() {
+  const { currentStep } = useAppContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Typography 
+          variant="h2" 
+          component="h4" 
+          sx={{
+            color: 'var(--text-primary)',
+            mb: 10
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Expression <br />Evaluator
+        </Typography>
+
+        {currentStep === 1 && <Screen1 />}
+
+        {currentStep === 2 && <Screen2 />}
+
+      </Container>
+    </>
+    
   );
 }
 
